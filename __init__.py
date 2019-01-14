@@ -199,10 +199,6 @@ def _renderQA(self,data,qfmt=None,afmt=None):
         additionalFields[i]=str(v)
                                   
     data[6] += "\x1f".join(additionalFields)   #\x1f is used as a field separator
-    # with open('xcvxcv.txt','w') as FO:
-    #     for f in additionalFields:
-    #         FO.write(f + '\n')
-    #         return
 
     def tmpFieldMap(m):
         "Mapping of field name -> (ord, field)."

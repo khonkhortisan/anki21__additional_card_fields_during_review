@@ -50,7 +50,7 @@ def timefn(tm):
 #https://github.com/hssm/advanced-browser/blob/master/advancedbrowser/advancedbrowser/custom_fields.py#L225
 #which is 
     # GPLv3
-    # by HSSM (no copyright info found)
+    # by HSSM
 def valueForOverdue(odid, queue, type, due, d):
     if odid or queue == 1:
         return

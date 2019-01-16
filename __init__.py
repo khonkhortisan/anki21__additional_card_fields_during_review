@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 """
-This addon is based on: Additional Card Fields https://ankiweb.net/shared/info/441235634
+This addon is a modification of "Additional Card Fields" https://ankiweb.net/shared/info/441235634
                         by https://www.reddit.com/user/Dayjaby/
-My modification also contains some functions from other people, for details see the 
+This modification also contains some functions from other people, for details see the 
 comments about these functions.
 
 License: AGPLv3, http://www.gnu.org/licenses/agpl.html

@@ -10,27 +10,14 @@ License: AGPLv3, http://www.gnu.org/licenses/agpl.html
 
 
 Modifications:
-- attempt to fix unicode error (see below)
 - also show deck options and stats
 - re-arranged code to make it easier to add additional fields: 
   put additional fields below this line: "##add your additional fields here"
   format: addInfo['NameInCardTemplateWindow'] = ValueShownDuringReview
 
 use at your own risk
-
-about the unicode error in Anki 2.0:
-the original add-on sometimes throws errors like this:
-"UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 8: ordinal not in range(128)"
-This error is because lines 73, 74 
-  L73: additionalFields[16] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(first/1000))
-  L74: additionalFields[17] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(last/1000)) 
-of the original add-on. time.strftime for some locales (languages) outputs non-ascii characters because of:
-  %a - Locale’s abbreviated weekday name
-  %b - Locale’s abbreviated month name
-    (https://docs.python.org/2/library/time.html)
 """
 
-import locale
 import copy
 import time
 from anki.collection import _Collection
@@ -118,17 +105,8 @@ def _renderQA(self,data,qfmt=None,afmt=None):
                 id=card.id)
 
         if cnt:
-            #unicode error fix
-            #locales on Windows are more complicated so I just remove the %a and %b
-            if isWin:    
-                addInfo['FirstReview'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(first/1000))
-                addInfo['LastReview'] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(last/1000)) 
-            else:
-                mylocale = locale.getlocale(locale.LC_TIME)
-                locale.setlocale(locale.LC_TIME,('en_US', 'UTF-8'))
-                addInfo['FirstReview'] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(first/1000))
-                addInfo['LastReview'] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(last/1000))
-                locale.setlocale(locale.LC_TIME,mylocale)
+            addInfo['FirstReview'] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(first/1000))
+            addInfo['LastReview'] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(last/1000))
 
             #https://docs.python.org/2/library/datetime.html  #todo
             addInfo['TimeAvg']  = timefn(total/float(cnt))
@@ -169,7 +147,7 @@ def _renderQA(self,data,qfmt=None,afmt=None):
         addInfo['new__cards_per_day'] = conf['new']['perDay']
         addInfo['graduating_interval'] = conf['new']['ints'][0]
         addInfo['easy_interval'] = conf['new']['ints'][1]
-        addInfo['Starting_ease'] = conf['new']['initialFactor'] / 10
+        addInfo['Starting_ease'] = int(conf['new']['initialFactor'] / 10)
         addInfo['bury_related_new_cards'] = conf['new']['bury']
         addInfo['MaxiumReviewsPerDay'] = conf['rev']['perDay']
         addInfo['EasyBonus'] = int(100 * conf['rev']['ease4'])

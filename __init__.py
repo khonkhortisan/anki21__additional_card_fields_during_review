@@ -6,7 +6,7 @@ This addon is a modification of "Additional Card Fields" https://ankiweb.net/sha
 This modification also contains some functions from other people, for details see the 
 comments about these functions.
 
-License: AGPLv3, http://www.gnu.org/licenses/agpl.html
+License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
 
 Modifications:
@@ -36,7 +36,6 @@ oldRenderQA = _Collection._renderQA
 # this is function timefn is from anki from anki/stats.py which is at
 # https://github.com/dae/anki/blob/master/anki/stats.py#L77 and
     # Copyright: Damien Elmes <anki@ichi2.net>
-    # License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 def timefn(tm):
     str = ""
     if tm >= 60:
@@ -48,8 +47,6 @@ def timefn(tm):
 
 #from Advanced Browser - overdue_days
 #https://github.com/hssm/advanced-browser/blob/master/advancedbrowser/advancedbrowser/custom_fields.py#L225
-#which is 
-    # GPLv3
     # by HSSM
 def valueForOverdue(odid, queue, type, due, d):
     if odid or queue == 1:

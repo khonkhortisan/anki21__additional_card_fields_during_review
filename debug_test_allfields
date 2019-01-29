@@ -1,0 +1,55 @@
+Did  {{info::Did}}<br>
+Id  {{info::Id}}<br>
+Ivl  {{info::Ivl}} <br>
+Queue  {{info::Queue}} <br>
+Reviews  {{info::Reviews}} <br>
+Lapses  {{info::Lapses}}<br>
+Type  {{info::Type}} <br>
+Nid  {{info::Nid}}<br>
+Mod  {{info::Mod}}<br>
+Usn  {{info::Usn}}<br>
+Factor  {{info::Factor}}<br><br>
+
+Review  {{info::Review?}}<br>
+New  {{info::New?}}<br>
+Learning  {{info::Learning?}}<br>
+TodayLearning  {{info::TodayLearning?}}<br>
+DayLearning  {{info::DayLearning?}}<br>
+Young  {{info::Young}}<br>
+Mature  {{info::Mature}}<br><br>
+
+Ord  {{info::Ord}}<br>
+FirstReview  {{info::FirstReview}}<br>
+LastReview  {{info::LastReview}}<br>
+TimeAvg  {{info::TimeAvg}} <br>
+TimeTotal  {{info::TimeTotal}}<br><br><br>
+
+Options_Group_ID  {{info::Options_Group_ID}}<br>
+Options_Group_Name  {{info::Options_Group_Name}}<br>
+Ignore_answer_times_longer_than  {{info::Ignore_answer_times_longer_than}}<br>
+Show_answer_time  {{info::Show_answer_time}}<br>
+Auto_play_audio  {{info::Auto_play_audio}}<br>
+When_answer_shown_replay_q  {{info::When_answer_shown_replay_q}}<br>
+is_filtered_deck  {{info::is_filtered_deck}}<br>
+deck_usn  {{info::deck_usn}}<br>
+deck_mod_time  {{info::deck_mod_time}}<br>
+new__steps_in_minutes  {{info::new__steps_in_minutes}}<br>
+new__order_of_new_cards  {{info::new__order_of_new_cards}}<br>
+new__cards_per_day  {{info::new__cards_per_day}}<br>
+graduating_interval  {{info::graduating_interval}}<br>
+easy_interval  {{info::easy_interval}}<br>
+Starting_ease  {{info::Starting_ease}}<br>
+bury_related_new_cards  {{info::bury_related_new_cards}}<br>
+MaxiumReviewsPerDay  {{info::MaxiumReviewsPerDay}}<br>
+EasyBonus  {{info::EasyBonus}}<br>
+IntervalModifier  {{info::IntervalModifier}}<br>
+MaximumInterval  {{info::MaximumInterval}}<br>
+bur_related_reviews_until_next_day  {{info::bur_related_reviews_until_next_day}}<br>
+lapse_learning_steps  {{info::lapse_learning_steps}}<br>
+lapse_new_ivl  {{info::lapse_new_ivl}}<br>
+lapse_min_ivl  {{info::lapse_min_ivl}}<br>
+lapse_leech_threshold  {{info::lapse_leech_threshold}}<br>
+lapse_leech_action  {{info::lapse_leech_action}}<br>
+Date_Created  {{info::Date_Created}}<br><br><br>
+
+{{info::allfields}}<br><br><br>

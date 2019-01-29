@@ -138,14 +138,15 @@ def _renderQA(self,data,qfmt=None,afmt=None):
         addInfo['Mod'] = time.strftime("%Y-%m-%d",time.localtime(card.mod))
         addInfo['Usn'] = card.usn
         addInfo['Factor'] = card.factor
+        
         addInfo['Review?'] = 'Review' if card.type==2 else ''
         addInfo['New?'] = 'New' if card.type==0 else ''
         addInfo['Learning?'] = 'Learning' if card.type==1 else ''
         addInfo['TodayLearning?'] = 'Learning' if card.type==1 and card.queue==1 else ''
         addInfo['DayLearning?'] = 'Learning' if card.type==1 and card.queue==3 else ''
 
-        addInfo['Young'] = 'Young' if card.type == 2 and card.ivl < 21
-        addInfo['Mature'] = 'Mature' if card.type == 2 and card.ivl > 20
+        addInfo['Young'] = 'Young' if card.type==2 and card.ivl < 21 else ''
+        addInfo['Mature'] = 'Mature' if card.type==2 and card.ivl > 20 else ''
 
         addInfo['Options_Group_ID'] = conf['id']
         addInfo['Options_Group_Name'] = conf['name']
@@ -189,7 +190,7 @@ def _renderQA(self,data,qfmt=None,afmt=None):
 
     for i, v in enumerate(addInfo.values()):
         additionalFields[i]=str(v)
-                                  
+
     data[6] += "\x1f".join(additionalFields)   #\x1f is used as a field separator
 
     def tmpFieldMap(m):
@@ -232,6 +233,36 @@ def previewCards(self, note, type=0):
         cards.append(card)
     return cards
 
+
+#maybe need to increase repCount?
+from anki.template.template import *
+#this function is from anki/template/template.py
+def render_tags(self, template, context):
+    """Renders all the tags in a template for a context."""
+    repCount = 0
+    while 1:
+        if repCount > 200:   #mod
+            print("too many replacements")
+            break
+        repCount += 1
+
+        match = self.tag_re.search(template)
+        if match is None:
+            break
+
+        tag, tag_type, tag_name = match.group(0, 1, 2)
+        tag_name = tag_name.strip()
+        try:
+            func = modifiers[tag_type]
+            replacement = func(self, tag_name, context)
+            template = template.replace(tag, replacement)
+        except (SyntaxError, KeyError):
+            return "{{invalid template}}"
+
+    return template
+
+#Template.render_tags = render_tags
 _Collection._renderQA = _renderQA
 _Collection.previewCards = previewCards
  
+

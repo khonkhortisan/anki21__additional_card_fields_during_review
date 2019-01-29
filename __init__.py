@@ -4,11 +4,12 @@
 This addon is a modification of "Additional Card Fields" https://ankiweb.net/shared/info/441235634
 which was released by https://www.reddit.com/user/Dayjaby/
 
-
-This add-on likely also contains code from the add-on "_Young_Mature_Card_Fields" which is
+This add-on also contains code from the add-on "_Young_Mature_Card_Fields" which is
   # https://ankiweb.net/shared/info/1751807495
   # https://github.com/ankitest/anki-musthave-addons-by-ankitest
   # Copyright (c) 2016 Dmitry Mikheev, http://finpapa.ucoz.net/
+
+This add-on contains code from anki which is Copyright: Damien Elmes <anki@ichi2.net>
 
 This modification also contains some functions from other people, for details see the 
 comments about these functions.
@@ -66,7 +67,8 @@ def valueForOverdue(odid, queue, type, due, d):
         else:
             return
 
-
+          
+# this is a modification of a function from anki/collection.py
 def _renderQA(self,data,qfmt=None,afmt=None):
     """
     this function overwrites a function from collection.py
@@ -134,9 +136,15 @@ def _renderQA(self,data,qfmt=None,afmt=None):
         addInfo['Mod'] = time.strftime("%Y-%m-%d",time.localtime(card.mod))
         addInfo['Usn'] = card.usn
         addInfo['Factor'] = card.factor
-        addInfo['New?'] = 'New' if card.type==0 else ''
-        addInfo['Learning?'] = 'Learning' if card.type==1 and card.queue==3 else ''
         addInfo['Review?'] = 'Review' if card.type==2 else ''
+        addInfo['New?'] = 'New' if card.type==0 else ''
+        addInfo['Learning?'] = 'Learning' if card.type==1 else ''
+        addInfo['TodayLearning?'] = 'Learning' if card.type==1 and card.queue==1 else ''
+        addInfo['DayLearning?'] = 'Learning' if card.type==1 and card.queue==3 else ''
+
+        addInfo['Young'] = 'Young' if card.type == 2 and card.ivl < 21
+        addInfo['Mature'] = 'Mature' if card.type == 2 and card.ivl > 20
+
         addInfo['Options_Group_ID'] = conf['id']
         addInfo['Options_Group_Name'] = conf['name']
         addInfo['Ignore_answer_times_longer_than'] = conf['maxTaken']
@@ -202,6 +210,7 @@ def _renderQA(self,data,qfmt=None,afmt=None):
     return result
 
 
+# this is a modification of a function from anki/collection.py
 def previewCards(self, note, type=0):
     existingTemplates = {c.template()[u'name'] : c for c in note.cards()}
     if type == 0:

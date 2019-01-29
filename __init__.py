@@ -125,6 +125,7 @@ def _renderQA(self,data,qfmt=None,afmt=None):
         addInfo['Did'] = card.did
         addInfo['Due'] = card.due
         addInfo['Id'] = card.id
+        addInfo['Ivl'] = card.ivl
         addInfo['Queue'] = card.queue
         addInfo['Reviews'] = card.reps
         addInfo['Lapses'] = card.lapses

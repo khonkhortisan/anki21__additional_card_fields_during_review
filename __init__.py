@@ -214,7 +214,7 @@ def _renderQA(self,data,qfmt=None,afmt=None):
 
 
 # this is a modification of a function from anki/collection.py
-def previewCards(self, note, type=0):
+def previewCards(self, note, type=0, did=None):
     existingTemplates = {c.template()[u'name'] : c for c in note.cards()}
     if type == 0:
         cms = self.findTemplates(note)
@@ -229,7 +229,7 @@ def previewCards(self, note, type=0):
         if template[u'name'] in existingTemplates:
             card = existingTemplates[template[u'name']]
         else:
-            card = self._newCard(note, template, 1, flush=False)
+            card = self._newCard(note, template, 1, flush=False, did=did)
         cards.append(card)
     return cards
 

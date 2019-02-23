@@ -229,7 +229,10 @@ def previewCards(self, note, type=0, did=None):
         if template[u'name'] in existingTemplates:
             card = existingTemplates[template[u'name']]
         else:
-            card = self._newCard(note, template, 1, flush=False, did=did)
+            if packaging.version.parse(anki.version) < packaging.version.parse("2.1.9"):
+                card = self._newCard(note, template, 1, flush=False)
+            else:
+                card = self._newCard(note, template, 1, flush=False, did=did)
         cards.append(card)
     return cards
 
